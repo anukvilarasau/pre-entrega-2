@@ -29,8 +29,8 @@ Recibe un párrafo de texto sin procesar (una descripción de arquitectura de so
 Requiere Python 3.10 o más (desarrollado con 3.13) y una clave de API de Anthropic.
 
 ```bash
-git clone https://github.com/anukvilarasau/pipeline-extraccion-tecnica.git
-cd pipeline-extraccion-tecnica
+git clone https://github.com/anukvilarasau/pre-entrega-2.git
+cd pre-entrega-2
 
 python3 -m venv .venv
 source .venv/bin/activate            # en Windows: .venv\Scripts\activate
