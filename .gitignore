@@ -1,0 +1,5 @@
+# Entorno virtual (se recrea con: pip install -r requirements.txt)
+.venv/
+__pycache__/
+# Secretos: la clave de API NUNCA se sube a GitHub
+.env

@@ -1,0 +1,38 @@
+15:38:09.029 | INFO    | ==================== 1. Dos textos en paralelo con asyncio.gather ====================
+15:38:09.029 | INFO    | ENTRADA   | 255 caracteres | "ERROR 2026-10-12 03:14:07 api-gateway: FastAPI worker timeout al consultar PostgreSQL; pool de conex…"
+15:38:09.123 | INFO    | ENTRADA   | 268 caracteres | "El servicio de reportes es una app en Django que corre en contenedores Docker sobre AWS ECS. Los rep…"
+15:38:09.124 | INFO    | INTENTO   | intento 1 de 3 | modelo claude-opus-5-5
+15:38:09.124 | INFO    | INTENTO   | intento 1 de 3 | modelo claude-opus-5-5
+15:38:12.004 | INFO    | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+15:38:12.034 | INFO    | RESPUESTA | stop_reason=end_turn | tokens: entrada=1507 salida=169
+15:38:12.035 | INFO    | VALIDACIÓN| OK: 4 tecnología(s), criticidad 'alta'
+15:38:12.036 | INFO    | RESULTADO | validado en 3.0 s tras 1 intento(s): {"tecnologias":["FastAPI","PostgreSQL","psycopg2","Redis"],"nivel_de_criticidad":"alta","resumen_tecnico":"El api-gateway en FastAPI sufre timeouts porque el pool de conexiones a PostgreSQL está agotado (psycopg2.OperationalError: too many clients already), mientras Redis funciona normalmente. Los usuarios reciben HTTP 504 en el checkout, con impacto directo en producción."}
+15:38:14.977 | INFO    | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+15:38:14.985 | INFO    | RESPUESTA | stop_reason=end_turn | tokens: entrada=1500 salida=181
+15:38:14.986 | INFO    | VALIDACIÓN| OK: 6 tecnología(s), criticidad 'baja'
+15:38:14.987 | INFO    | RESULTADO | validado en 5.9 s tras 1 intento(s): {"tecnologias":["Django","Docker","AWS ECS","RabbitMQ","Celery","Amazon S3"],"nivel_de_criticidad":"baja","resumen_tecnico":"Servicio de reportes en Django desplegado en contenedores Docker sobre AWS ECS, que encola reportes pesados en RabbitMQ para su procesamiento con workers de Celery y almacena los PDF en Amazon S3. Funciona de forma estable y el texto es documentación del diseño, sin incidentes."}
+15:38:14.987 | INFO    | ==================== 2. Estrés A: texto ambiguo ====================
+15:38:14.987 | INFO    | ENTRADA   | 134 caracteres | "Anoche el sistema anduvo raro un rato y después se arregló solo. Algunos dicen que fue la base, otro…"
+15:38:14.988 | INFO    | INTENTO   | intento 1 de 3 | modelo claude-opus-5-5
+15:38:22.307 | INFO    | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+15:38:22.324 | INFO    | RESPUESTA | stop_reason=end_turn | tokens: entrada=1451 salida=384
+15:38:22.324 | INFO    | VALIDACIÓN| OK: 1 tecnología(s), criticidad 'media'
+15:38:22.325 | INFO    | RESULTADO | validado en 7.3 s tras 1 intento(s): {"tecnologias":["Base de datos (genérica)"],"nivel_de_criticidad":"media","resumen_tecnico":"Anoche hubo un comportamiento anómalo y transitorio del sistema que se resolvió sin intervención; se sospecha de la base de datos o de la red, pero el texto no nombra tecnologías concretas ni aporta evidencia de la causa."}
+15:38:22.325 | INFO    | -> El modelo se recuperó y devolvió un objeto válido.
+15:38:22.325 | INFO    | ==================== 3. Estrés B: respuesta cortada por falta de tokens (max_tokens=40) ====================
+15:38:22.328 | INFO    | ENTRADA   | 255 caracteres | "ERROR 2026-10-12 03:14:07 api-gateway: FastAPI worker timeout al consultar PostgreSQL; pool de conex…"
+15:38:22.329 | INFO    | INTENTO   | intento 1 de 3 | modelo claude-opus-5-5
+15:38:24.066 | INFO    | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+15:38:24.079 | INFO    | RESPUESTA | stop_reason=max_tokens | tokens: entrada=1507 salida=40
+15:38:24.079 | WARNING | INCOMPLETA| el modelo cortó la respuesta al llegar al tope de 40 tokens de salida
+15:38:25.927 | WARNING | REINTENTO | intento 2 de 3
+15:38:27.648 | INFO    | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+15:38:27.662 | INFO    | RESPUESTA | stop_reason=max_tokens | tokens: entrada=1507 salida=40
+15:38:27.662 | WARNING | INCOMPLETA| el modelo cortó la respuesta al llegar al tope de 40 tokens de salida
+15:38:29.828 | WARNING | REINTENTO | intento 3 de 3
+15:38:31.585 | INFO    | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+15:38:31.597 | INFO    | RESPUESTA | stop_reason=max_tokens | tokens: entrada=1507 salida=40
+15:38:31.597 | WARNING | INCOMPLETA| el modelo cortó la respuesta al llegar al tope de 40 tokens de salida
+15:38:31.598 | ERROR   | FALLÓ     | sin objeto válido tras 3 intento(s) (9.3 s): RespuestaIncompleta
+15:38:31.598 | INFO    | -> Corte detectado en cada intento; se agotaron los reintentos (RespuestaIncompleta) y el programa sigue.
+15:38:31.599 | INFO    | ==================== Listo: 3 resultado(s) válido(s) guardados en ejemplo_salida.json ====================

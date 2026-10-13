@@ -1,0 +1,31 @@
+{
+  "log_de_error": {
+    "tecnologias": [
+      "FastAPI",
+      "PostgreSQL",
+      "psycopg2",
+      "Redis"
+    ],
+    "nivel_de_criticidad": "alta",
+    "resumen_tecnico": "El api-gateway en FastAPI sufre timeouts porque el pool de conexiones a PostgreSQL está agotado (psycopg2.OperationalError: too many clients already), mientras Redis funciona normalmente. Los usuarios reciben HTTP 504 en el checkout, con impacto directo en producción."
+  },
+  "arquitectura": {
+    "tecnologias": [
+      "Django",
+      "Docker",
+      "AWS ECS",
+      "RabbitMQ",
+      "Celery",
+      "Amazon S3"
+    ],
+    "nivel_de_criticidad": "baja",
+    "resumen_tecnico": "Servicio de reportes en Django desplegado en contenedores Docker sobre AWS ECS, que encola reportes pesados en RabbitMQ para su procesamiento con workers de Celery y almacena los PDF en Amazon S3. Funciona de forma estable y el texto es documentación del diseño, sin incidentes."
+  },
+  "ambiguo": {
+    "tecnologias": [
+      "Base de datos (genérica)"
+    ],
+    "nivel_de_criticidad": "media",
+    "resumen_tecnico": "Anoche hubo un comportamiento anómalo y transitorio del sistema que se resolvió sin intervención; se sospecha de la base de datos o de la red, pero el texto no nombra tecnologías concretas ni aporta evidencia de la causa."
+  }
+}

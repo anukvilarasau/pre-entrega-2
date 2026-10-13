@@ -1,0 +1,5 @@
+langchain-anthropic==1.7.6
+langchain-core==1.6.10
+anthropic==1.13.0
+pydantic==2.14.1
+python-dotenv==1.2.4
